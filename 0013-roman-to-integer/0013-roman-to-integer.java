@@ -1,22 +1,35 @@
 class Solution {
-    public int romanToInt(String s) {
-        Map<Character,Integer> m1 = new HashMap<>();
-        m1.put('I',1);
-        m1.put('V',5);
-        m1.put('X',10);   
-        m1.put('L',50);
-        m1.put('C',100);
-        m1.put('D',500); 
-        m1.put('M',1000);  
-        int total =0;
-        for(int i=0;i<s.length();i++)
-        {
-            if(i<s.length()-1 && m1.get(s.charAt(i))<m1.get(s.charAt(i+1))){
-                total=total-m1.get(s.charAt(i));
-            }else{
-                total=total+m1.get(s.charAt(i));
+    // Create a HashMap to store Roman numeral symbols and their corresponding values.
+    public static int romanToInt(String s) {
+        HashMap<Character, Integer> romanMap = new HashMap<>();
+        romanMap.put('I', 1);
+        romanMap.put('V', 5);
+        romanMap.put('X', 10);
+        romanMap.put('L', 50);
+        romanMap.put('C', 100);
+        romanMap.put('D', 500);
+        romanMap.put('M', 1000);
+
+        int total = 0;
+        int previousValue = 0;
+
+        // Iterate over the string characters in reverse order.
+        for (int i = s.length() - 1; i >= 0; i--) {
+            int currentValue = romanMap.get(s.charAt(i));
+
+            // If the current value is smaller than the previous value, subtract it from the total.
+            if (currentValue < previousValue) {
+                total -= currentValue;
+            } else {
+                // Otherwise, add the current value to the total.
+                total += currentValue;
             }
-        }      
+
+            // Update the previous value for the next iteration.
+            previousValue = currentValue;
+        }
+
         return total;
     }
+
 }
