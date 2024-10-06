@@ -14,6 +14,10 @@
  * }
  */
 class Solution {
+     public boolean isBalanced(TreeNode root) {
+        // If the checkHeight returns -1, the tree is not balanced
+        return checkHeight(root) != -1;
+    }
      private int checkHeight(TreeNode node) {
         // Base case: empty node has a height of 0
         if (node == null) {
@@ -42,8 +46,5 @@ class Solution {
     }
     
     // Main method to determine if the binary tree is balanced
-    public boolean isBalanced(TreeNode root) {
-        // If the checkHeight returns -1, the tree is not balanced
-        return checkHeight(root) != -1;
-    }
+   
 }
